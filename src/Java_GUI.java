@@ -10,12 +10,18 @@ import javax.swing.*;
 
 public class Java_GUI extends JFrame implements ActionListener {
 
+    //JPanels
+    JPanel buttonPanel = new JPanel();
 
+    //JButtons
     JButton bierButton = new JButton("Bier");
     JButton weinButton = new JButton("Wein");
     JButton ginButton = new JButton("Gin");
+
+    //JTextFields
     JTextField TextField = new JTextField();
-    JPanel buttonPanel = new JPanel();
+
+    //JLabels
 
 
     public Java_GUI() {
@@ -29,19 +35,29 @@ public class Java_GUI extends JFrame implements ActionListener {
 
         buttonPanel.setMaximumSize(new Dimension(500, 200));
 
+        //Elemente dem Panel Adden
+
         buttonPanel.add(bierButton);
         buttonPanel.add(weinButton);
         buttonPanel.add(ginButton);
 
+        //Positionieren von Panel
+
         add(buttonPanel, BorderLayout.CENTER);
+
+        //Actionlistener auf buttons zuweisen
 
         bierButton.addActionListener(this);
         weinButton.addActionListener(this);
         ginButton.addActionListener(this);
 
-        setSize(1200, 670);
+        //Anzeigen des Fensters
         setVisible(true);
+        //Grösse des Fensters
+        setSize(1200, 670);
+        //Titel des Fensters
         setTitle("Dr Völlscht isch dr töllscht");
+        //Schliesst Programm
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 

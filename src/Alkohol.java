@@ -1,21 +1,1 @@
-/**
- * Created by wizlamar on 27.04.17.
- */
-public class Alkohol {
-
-    double alkoholgehalt;
-    double sip;
-
-    public Alkohol(double alkoholgehalt, double sip) {
-        this.alkoholgehalt = alkoholgehalt;
-    }
-
-    protected double getAlkoholgehalt() {
-        return alkoholgehalt;
-    }
-
-    protected double sipsip() {
-        return sip;
-    }
-
-}
+/** * Created by wizlamar on 27.04.17. */public class Alkohol implements Alkoholinterface{    private double alkoholgehalt;    private double sip;    private double promill;    public Alkohol(double alkoholgehalt, double sip) {        this.alkoholgehalt = alkoholgehalt;    }    protected double getAlkoholgehalt() {        return alkoholgehalt;    }    protected double sipsip() {        return sip;    }    public double berechnePromill() {       promill = (alkoholgehalt / 1000);        return promill;    }}
