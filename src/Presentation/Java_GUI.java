@@ -17,12 +17,10 @@ public class Java_GUI extends JFrame implements ActionListener {
     int anfangspegel = 0;
     int aktuellpegel = 0;
 
-
-
     //DrinkLogic wird instanziiert
     private DrinkLogic logic = new DrinkLogic();
     //Startscreen wird instanziiert
-    private StartScreen ss = new StartScreen();
+    private Person person;
 
     //Alkohol Objekte
     Getraenk wein = new Wein(8.0, 5);
@@ -49,21 +47,25 @@ public class Java_GUI extends JFrame implements ActionListener {
     JLabel weinpreis = new JLabel("Preis: 8.00");
     JLabel ginpreis = new JLabel("Preis: 11.00");
     JLabel energypreis = new JLabel("Preis: 3.00");
+    JLabel info;
 
    // BufferedImage barBackgroundIMG;
 
-    public Java_GUI() {
+    public Java_GUI(Person person) {
+
+        this.person = person;
+        info = new JLabel("Wenn sie den Alkoholwert " + person.berechneIndividuellpegel() +  " überschreiten dann ist Game Over!");
 
         setLayout(new BorderLayout());
         JFrame meinFrame = new JFrame("Dr Völlscht isch dr töllscht");
         hauptPanel.setLayout(new BorderLayout());
         buttonPanel.setLayout(new GridLayout(4,1));
-        datenPanel.setLayout(new GridLayout(2,1));
+        datenPanel.setLayout(new GridLayout(3,1));
 
         //Grösse anpassen
         bierButton.setPreferredSize(new Dimension(50, 20));
-    //  weinButton.setPreferredSize(new Dimension(50, 20));
-  //      ginButton.setPreferredSize(new Dimension(50, 20));
+        weinButton.setPreferredSize(new Dimension(50, 20));
+        ginButton.setPreferredSize(new Dimension(50, 20));
 
         //Elemente dem Panel Adden
         buttonPanel.add(bierButton);
@@ -77,6 +79,10 @@ public class Java_GUI extends JFrame implements ActionListener {
 
         datenPanel.add(guthabenlbl);
         datenPanel.add(promilllbl);
+        datenPanel.add(info);
+
+        //Label design
+        info.setFont(info.getFont().deriveFont(Font.BOLD, 14f));
 
         hauptPanel.add(buttonPanel);
 
@@ -111,8 +117,6 @@ public class Java_GUI extends JFrame implements ActionListener {
 
     }
 
-
-
 /*    @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -121,12 +125,8 @@ public class Java_GUI extends JFrame implements ActionListener {
     }*/
 
     public void actionPerformed(ActionEvent e) {
-       /* if (e.getSource() == addButton) {
-            listModel.addElement(TextField.getText());
-        }
-        if (e.getSource() == removeButton) {
-            listModel.removeElementAt(toDoList.getSelectedIndex());
-        } */
+
+
         if (e.getSource() == bierButton) {
             logic.addGetraenk(bier);
             Guthaben = Guthaben - bier.getPrice();
@@ -159,16 +159,14 @@ public class Java_GUI extends JFrame implements ActionListener {
             promilllbl.setText("Ihr Alkoholwert: " + aktuellpegel);
         }
 
-        if (aktuellpegel >= 50){
+        if (aktuellpegel >= person.individuellpegel){
             JOptionPane.showMessageDialog(null, "Game Over!!!");
+            System.exit(0);
 
         }
+
         System.out.print(logic.getList());
 
-    }
-
-    public static void main(String[] args) {
-        Java_GUI JG = new Java_GUI();
     }
 
 }
