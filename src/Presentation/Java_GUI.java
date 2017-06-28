@@ -1,4 +1,6 @@
-package Presentation; /**
+package Presentation;
+
+/**
  * Created by wizlamar on 26.04.17.
  */
 
@@ -12,7 +14,7 @@ import javax.swing.*;
 
 public class Java_GUI extends JFrame implements ActionListener {
 
-    //Mein Guthaben
+    //Meine Variabeln
     double Guthaben = 300.00;
     int anfangspegel = 0;
     int aktuellpegel = 0;
@@ -35,10 +37,10 @@ public class Java_GUI extends JFrame implements ActionListener {
     JPanel datenPanel = new JPanel();
 
     //JButtons
-    JButton bierButton = new JButton("Bier");
-    JButton weinButton = new JButton("Wein");
-    JButton ginButton = new JButton("Gin");
-    JButton energyButton = new JButton("Red Bull");
+    JButton bierButton = new JButton("Bier " + "(" + bier.getAlcoholPegel() + ") Alkoholwert");
+    JButton weinButton = new JButton("Wein " + "(" + wein.getAlcoholPegel() + ") Alkoholwert");
+    JButton ginButton = new JButton("Gin " + "(" + gin.getAlcoholPegel() + ") Alkoholwert");
+    JButton energyButton = new JButton("Redbull " + "(" + redbull.getAlcoholPegel() + ") Alkoholwert");
 
     //JLabels
     JLabel guthabenlbl = new JLabel("Ihr Guthaben: " + Guthaben);
@@ -48,8 +50,6 @@ public class Java_GUI extends JFrame implements ActionListener {
     JLabel ginpreis = new JLabel("Preis: 11.00");
     JLabel energypreis = new JLabel("Preis: 3.00");
     JLabel info;
-
-   // BufferedImage barBackgroundIMG;
 
     public Java_GUI(Person person) {
 
@@ -98,14 +98,6 @@ public class Java_GUI extends JFrame implements ActionListener {
         ginButton.addActionListener(this);
         energyButton.addActionListener(this);
 
-
-      /*  try {
-            barBackgroundIMG = ImageIO.read(getClass().getResourceAsStream("/Bar.jpg"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-       */
-
         //Grösse des Fensters
         setSize(1200, 670);
         //Titel des Fensters
@@ -116,13 +108,6 @@ public class Java_GUI extends JFrame implements ActionListener {
         setVisible(true);
 
     }
-
-/*    @Override
-    public void paint(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(barBackgroundIMG,0,0,getWidth(),getHeight(),null);
-        super.paint(g);
-    }*/
 
     public void actionPerformed(ActionEvent e) {
 
@@ -160,7 +145,7 @@ public class Java_GUI extends JFrame implements ActionListener {
         }
 
         if (aktuellpegel >= person.individuellpegel){
-            JOptionPane.showMessageDialog(null, "Game Over!!!");
+            JOptionPane.showMessageDialog(null, "Game Over!!! You are Drunk as fuck and thanks for playing");
             System.exit(0);
 
         }

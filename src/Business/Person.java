@@ -1,12 +1,13 @@
 package Business;
 
+import java.util.Random;
+
 /**
  * Created by wizlamar on 25.06.17.
  */
 public class Person {
     private int height;
     private double weight;
-
     public int individuellpegel;
 
     public Person(int height, double weight) {
@@ -30,9 +31,15 @@ public class Person {
         this.weight = weight;
     }
 
+    /**
+     * @return individuellpegel
+     */
         public double berechneIndividuellpegel(){
 
-        individuellpegel = (int) (height * weight);
+            Random random = new Random();
+            int randomNUm = random.nextInt(6) + 5;
+
+        individuellpegel = (int) (height - weight / randomNUm + 100);
         System.out.println(individuellpegel);
         return individuellpegel;
     }

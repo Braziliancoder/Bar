@@ -5,8 +5,11 @@ package Business;
  */
 public class Bier extends Getraenk {
 
+    double Guthaben = 300.00;
+
     public Bier(double price, int alcoholPegel) {
         super(price, alcoholPegel);
+
     }
 
 }
